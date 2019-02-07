@@ -1,4 +1,4 @@
-# Korszerű informatikai eszközök
+﻿# Korszerű informatikai eszközök
 
 ## Hasznos segédanyagok
 
@@ -13,7 +13,7 @@
 1. hét: be- és kimenet, C-s fejlécfájlok használata, dinamikus tömbkezelés, referenciák [jegyzet](jegyzet/01.md) / [feladatok](feladatok/01.md)
 2. hét: bool típus, alapértelmezett argumentumok, függvény túlterhelés, template függvények [jegyzet](jegyzet/02.md) / [feladatok](feladatok/02.md)
 3. hét: osztályok, objektumok, objektumorientált programozás alapjai  [jegyzet](jegyzet/03.md) / [feladatok](feladatok/03.md)
-4. hét: string osztály és használata[feladatok](feladatok/04.md)
+4. hét: string osztály és használata [feladatok](feladatok/04.md)
 5. hét: fájlkezelés
 6. hét: statikus tagváltozók és tagfüggvények
 7. hét
