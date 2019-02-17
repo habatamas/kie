@@ -14,7 +14,7 @@
 2. hét: bool típus, alapértelmezett argumentumok, függvény túlterhelés, template függvények [jegyzet](jegyzet/02.md) / [feladatok](feladatok/02.md)
 3. hét: osztályok, objektumok, objektumorientált programozás alapjai  [jegyzet](jegyzet/03.md) / [feladatok](feladatok/03.md)
 4. hét: string osztály és használata [jegyzet](jegyzet/04.md) / [feladatok](feladatok/04.md)
-5. hét: fájlkezelés
+5. hét: fájlkezelés [jegyzet](jegyzet/05.md) / [feladatok](feladatok/05.md)
 6. hét: statikus tagváltozók és tagfüggvények
 7. hét
 8. hét
