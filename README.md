@@ -15,9 +15,9 @@
 3. hét: osztályok, objektumok, objektumorientált programozás alapjai  [jegyzet](jegyzet/03.md) / [feladatok](feladatok/03.md)
 4. hét: string osztály és használata [jegyzet](jegyzet/04.md) / [feladatok](feladatok/04.md)
 5. hét: fájlkezelés [jegyzet](jegyzet/05.md) / [feladatok](feladatok/05.md)
-6. hét: statikus tagváltozók és tagfüggvények
-7. hét
-8. hét
+6. hét: statikus tagváltozók és tagfüggvények [jegyzet](jegyzet/06.md) / [feladatok](feladatok/06.md)
+7. hét: 1. ZH (tervezett időpont)
+8. hét: operátor túlterhelés, barátfüggvények [jegyzet](jegyzet/08.md) / [feladatok](feladatok/08.md)
 9. hét
 10. hét
 11. hét
