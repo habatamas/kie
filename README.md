@@ -18,8 +18,8 @@
 6. hét: statikus tagváltozók és tagfüggvények [jegyzet](jegyzet/06.md) / [feladatok](feladatok/06.md)
 7. hét: 1. ZH (tervezett időpont)
 8. hét: operátor túlterhelés, barátfüggvények [jegyzet](jegyzet/08.md) / [feladatok](feladatok/08.md)
-9. hét
-10. hét
+9. hét: template osztályok [jegyzet](jegyzet/09.md) / [feladatok](feladatok/09.md)
+10. hét: öröklés, virtuális függvények [jegyzet](jegyzet/10.md) / [feladatok](feladatok/10.md)
 11. hét
 12. hét
 13. hét
