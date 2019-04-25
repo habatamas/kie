@@ -16,12 +16,12 @@
 4. hét: string osztály és használata [jegyzet](jegyzet/04.md) / [feladatok](feladatok/04.md)
 5. hét: fájlkezelés [jegyzet](jegyzet/05.md) / [feladatok](feladatok/05.md)
 6. hét: statikus tagváltozók és tagfüggvények [jegyzet](jegyzet/06.md) / [feladatok](feladatok/06.md)
-7. hét: 1. ZH (tervezett időpont)
+7. hét: 1. ZH
 8. hét: operátor túlterhelés, barátfüggvények [jegyzet](jegyzet/08.md) / [feladatok](feladatok/08.md)
 9. hét: template osztályok [jegyzet](jegyzet/09.md) / [feladatok](feladatok/09.md)
 10. hét: öröklés, virtuális függvények [jegyzet](jegyzet/10.md) / [feladatok](feladatok/10.md)
-11. hét
-12. hét
+11. hét: gyakorlás [feladatok](feladatok/11.md)
+12. hét: 2. ZH
 13. hét
 14. hét
 
