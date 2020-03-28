@@ -1,231 +1,103 @@
 #include <iostream>
-#include <cmath>
-#include <iomanip>
-
+#include <cmath> // C-ben: math.h
 
 using namespace std;
 
-class vektor3d {
+// komplex szám osztály
+class complex {
 private:
-	double x, y, z;
+	// tagváltozók: valós és képzetes rész
+	double re, im;
 
 public:
-	// alapértelmezett konstruktor
-	vektor3d() {
-		cout << "vektor letrejott" << endl;
-		x = 0;
-		y = 0;
-		z = 0;
+	// konstruktor
+	complex() {
+		re = 0;
+		im = 0;
+		cout << "konstruktor meghivva" << endl;
 	}
 
-	vektor3d(double uj_x, double uj_y, double uj_z) {
-		x = uj_x;
-		y = uj_y;
-		z = uj_z;
+	complex(double re, double im) {
+		this->re = re;
+		this->im = im;
+		cout << "masik konstruktor meghivva" << endl;
 	}
 
-	// publikus setterek és getterek
-	// a privát tagváltozók eléréséhez
-	void setX(double uj_x) { x = uj_x; }
-	
-	double getX() const {
-		return x;
+	// másoló konstruktor
+	complex(const complex &other) {
+		re = other.re;
+		im = other.im;
+		cout << "masolas" << endl;
 	}
 
-	void setY(double uj_y) { y = uj_y; }
+	// setter függvények
+	void setRe(double re) { this->re = re; }
+	void setIm(double im) { this->im = im; }
 
-	double getY() const {
-		return y;
+	// getter függvények
+	double getRe() const { return re; }
+	double getIm() const { return im; }
+
+	// trigonometrikus alak
+	double getR() const {
+		return sqrt(re * re + im * im);
 	}
 
-	void setZ(double uj_z) { z = uj_z; }
-
-	double getZ() const {
-		return z;
+	double getTheta() const {
+		return atan2(im, re);
 	}
 
-	double getHossz() const {
-		return sqrt(x*x + y*y + z*z);
+	void setR(double r) {
+		double theta = getTheta();
+		re = r * cos(theta);
+		im = r * sin(theta);
 	}
 
-
-};
-
-void kiir(const vektor3d &v) {
-	cout << "[" << v.getX();
-	cout << "   " << v.getY();
-	cout << "   " << v.getZ() << "]" << endl;
-}
-
-vektor3d *i_bazis() {
-	vektor3d *p = new vektor3d(1,0,0);
-	return p;
-}
-
-class vektorND {
-private:
-	double *koordinatak; // tömb
-	int dim; // dimenziók száma
-
-public:
-	// n dimenziós nullvektor létrehozása
-	vektorND(int dim) {
-		this->dim = dim;
-		koordinatak = new double[dim];
-
-		for (int i = 0; i < dim; i++)
-			koordinatak[i] = 0;
-	}
-
-	// 3d vektor létrehozása
-	vektorND(double x, double y, double z) {
-		dim = 3;
-		koordinatak = new double[3];
-		koordinatak[0] = x;
-		koordinatak[1] = y;
-		koordinatak[2] = z;
-	}
-	
-	// copy konstruktor
-	vektorND(const vektorND &eredeti) {
-		dim = eredeti.dim;
-		koordinatak = new double[dim];
-
-		for (int i = 0; i < dim; i++)
-			koordinatak[i] = eredeti.koordinatak[i];
-	}
-
-	// koordináta setter getter
-	double getKoord(int i) const {
-		return koordinatak[i];
-	}
-
-	void setKoord(int i, double koord) {
-		koordinatak[i] = koord;
-	}
-
-	// dimenzió getter
-	int getDim() const {
-		return dim;
-	}
-
-	void setDim(int dim) {
-		// új tömb foglalása
-		double *uj_koordinatak = new double[dim];
-
-		// értékek átmásolása
-		for (int i = 0; i < dim; i++) {
-			if (i < this->dim) {
-				uj_koordinatak[i] = koordinatak[i];
-			} else {
-				uj_koordinatak[i] = 0;
-			}
-		}
-
-		// régi tömb törlése
-		delete[] koordinatak;
-
-		// tagváltozók frissítése
-		this->dim = dim;
-		koordinatak = uj_koordinatak;
-	}
-
-	// vektor hossza
-	double getHossz() const {
-		double negyzetosszeg = 0;
-		for (int i = 0; i < dim; i++)
-			negyzetosszeg += koordinatak[i] * koordinatak[i];
-		return sqrt(negyzetosszeg);
-	}
-
-	// skaláris szorzat
-	double szorzat(const vektorND &masik) const {
-		double sum=0;
-
-		for (int i = 0; i < dim && i < masik.dim; i++)
-			sum += koordinatak[i] * masik.koordinatak[i];
-
-		return sum;
-	}
-
-	// normalizáló
-	void normalizal() {
-		double hossz = getHossz();
-		for (int i = 0; i < dim; i++)
-			koordinatak[i] /= hossz;
+	void setTheta(double theta) {
+		double r = getR();
+		re = r * cos(theta);
+		im = r * sin(theta);
 	}
 
 	// destruktor
-	~vektorND() {
-		delete[] koordinatak;
+	~complex() {
+		cout << "destruktor meghivva" << endl;
 	}
 };
 
-void kiir(const vektorND &v) {
-	cout << "[";
-	for (int i = 0; i < v.getDim(); i++) {
-		cout << setw(10) << v.getKoord(i);
-	}
-	cout << "]" << endl;
+// http://users.hszk.bme.hu/~ht1520/ora.txt
+
+void kiir(const complex &szam ) {
+	cout << szam.getRe() << '+' << szam.getIm() << 'i' << endl;
+}
+
+complex *fg() {
+	complex c(2, 3);
+	kiir(c);
+
+	complex* d = new complex(5, 6); // dinamikusan foglalt
+	return d;
 }
 
 int main() {
-	vektorND v5d(5);
-	v5d.setKoord(0, 10);
-	v5d.setKoord(1, 20);
-	v5d.setKoord(2, 3000);
-	v5d.setKoord(3, 40);
-	v5d.setKoord(4, 3.141592);
-	kiir(v5d);
-	v5d.setDim(3);
-	kiir(v5d);
-	cout << "hossz: " << v5d.getHossz() << endl;
-	v5d.normalizal();
-	kiir(v5d);
-	cout << "hossz: " << v5d.getHossz() << endl;
+	complex z4 = complex(2, 3); // egyenértékû: z4(2,3)
 
-	cout << "hello" << endl;
+	complex *ptr = fg();
+	ptr->setTheta(123);
+	delete ptr;
 
-	// copy teszt
-	vektorND masolat = v5d;
-	v5d.setKoord(0, 0);
-	kiir(masolat);
+	cout << ":)" << endl;
 
-	// variációk példányosításra
-	vektor3d v1; // alapértelmezett
-	vektor3d v2 = vektor3d(4, 5, 6); // másik konstruktor
-	vektor3d v3(7,8,9); // másik írásmód
+	complex z(3,4);
+	kiir(z);
+	cout << "r=" << z.getR() << endl;
+	cout << "theta=" << z.getTheta() << endl;
 
-	// dinamikus memóriakezelés
-	vektor3d *pv;
-	pv = new vektor3d(1,3,4);
+	complex z2(9,8);
+	kiir(z2);
 
-	pv->setX(1000);
-
-	(*pv).setY(999);
-
-	kiir(*pv);
-
-	delete pv;
-
-	vektor3d *i = i_bazis();
-	kiir(*i);
-	delete i;
-
-	// kiíró függvény
-	kiir(v1);
-	kiir(v2);
-	kiir(v3);
-	
-	// tagfüggvények használata
-	v1.setX(1);
-	v1.setY(2);
-	v1.setZ(3);
-
-	kiir(v1);
-	
-	cout << "hossz: " << v1.getHossz() << endl;
-
+	complex z3 = z2;
+	kiir(z3);
 
 	cin.get();
 	return 0;

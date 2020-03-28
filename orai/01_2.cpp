@@ -1,91 +1,77 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
 
 using namespace std;
+
+void maradekos_osztas(int osztando, int oszto,
+	                  int& hanyados, int& maradek) {
+	hanyados = osztando / oszto;
+	maradek  = osztando % oszto;
+}
+
+// referencia szerinti paraméterátadás
+void duplaz(int &szam) {
+	szam *= 2;
+}
+
+// konstans referencia (példa)
+void kiir(const int &szam) {
+	cout << "az atadott szam: " << szam << endl;
+}
 
 struct ido {
 	int ora, perc, masodperc;
 };
 
-// következõ négyzetszám
-void kovetkezo_negyzetszam(int &szam) {
-	int gyok = sqrt(szam);
-	gyok++;
-	szam = gyok * gyok;
+// itt hasznos a konstans referencia, hisz
+// nem kell feleslegesen másolgatni
+void kiir_ido(const ido& i) {
+	cout << i.ora << ':' << i.perc << ':' << i.masodperc << endl;
 }
 
-// prímteszt
-bool primteszt(int szam) {
-	for (int i = 2; i*i <= szam; i++)
-		if (szam%i == 0)
-			return false;
-	return true;
+// elsõ n db Fibonacci-szám
+int* fib(int n) {
+	int* szamok = new int[n];
+	for (int i = 0; i < n; i++) {
+		if (i == 0 || i == 1)
+			szamok[i] = 1;
+		else
+			szamok[i] = szamok[i - 1] + szamok[i - 2];
+	}
+	return szamok;
 }
 
-// következõ prím
-void kov_prim(int &szam) {
-	do {
-		szam++;
-	} while (!primteszt(szam));
-}
-
-// idõ kiírása
-void ido_kiir(const struct ido &t) {
-	cout << t.ora << ":";
-	cout << setfill('0') << setw(2) << t.perc << ":";
-	cout << setfill('0') << setw(2) << t.masodperc << endl;
-}
-
-// számot dupláz (mûködik)
-void duplaz(int &szam) {
-	szam *= 2;
-}
-
-// duplázás (pointerrel)
-void duplaz2(int *p) {
-	*p *= 2;
-}
 
 int main() {
-	cout << "hello" << endl;
+	cout << "hello mogi" << endl;
 
-	int a;
-	int &r = a;
+	int a = 3;
+	duplaz(a);
+	kiir(a);
 
-	r = 10;
-	cout << a << endl;
+	
+	// fib
+	int db;
+	cout << "hany Fibonacci-szam kell? ";
+	cin >> db;
+	int* fib_szamok = fib(db);
+	for (int i = 0; i < db; i++) {
+		cout << fib_szamok[i] << endl;
+	}
+	delete[] fib_szamok;
 
-	a = 9;
-	cout << r << endl;
+	// 10 int-bõl álló tömb
+	int* t = new int[10];
+	
+	// ...
 
-	// duplázás 1. teszt
-	int x = 4;
-	duplaz(x);
-	cout << "8-at varok: " << x << endl;
+	// felszabadítás
+	delete[] t;
 
-	// duplázás 2. teszt
-	x = 4;
-	duplaz2(&x);
-	cout << "8-at varok: " << x << endl;
-
-	// idõ
-	struct ido most;
-	most.ora = 9;
-	most.perc = 16;
-	most.masodperc = 4;
-	ido_kiir(most);
-
-	// négyzetszámok
-	cout << "negyzetszamok:" << endl;
-	for (int i = 0; i <= 100; kovetkezo_negyzetszam(i))
-		cout << i << endl;
-
-	// prímszámok
-	cout << "primszamok:" << endl;
-	for (int i = 2; i <= 100; kov_prim(i))
-		cout << i << endl;
+	int h, m;
+	maradekos_osztas(78,5,h,m);
+	cout << h << "," << m << endl;
 
 	cin.get();
+
 	return 0;
 }
