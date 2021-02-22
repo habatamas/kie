@@ -1,77 +1,66 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
-void maradekos_osztas(int osztando, int oszto,
-	                  int& hanyados, int& maradek) {
-	hanyados = osztando / oszto;
-	maradek  = osztando % oszto;
+void duplaz1(int szam) { // érték szerinti paraméterátadás
+	szam = szam * 2;
 }
 
-// referencia szerinti paraméterátadás
-void duplaz(int &szam) {
-	szam *= 2;
+int duplaz2(int szam) { // érték szerinti paraméterátadás
+	return 2 * szam;
 }
 
-// konstans referencia (példa)
-void kiir(const int &szam) {
-	cout << "az atadott szam: " << szam << endl;
+void duplaz3(int *p) { // érték (pointer) szerinti paraméterátadás
+	*p *= 2;
 }
 
-struct ido {
-	int ora, perc, masodperc;
+void duplaz4(int& r) { // referencia szerinti paraméterátadás
+	r *= 2;
+}
+
+struct datum {
+	int ev, ho, nap;
 };
 
-// itt hasznos a konstans referencia, hisz
-// nem kell feleslegesen másolgatni
-void kiir_ido(const ido& i) {
-	cout << i.ora << ':' << i.perc << ':' << i.masodperc << endl;
+// konstans referencia
+void datum_kiir(const datum &d) { // nem kell kiírni a struct-ot
+	cout << setfill('0');
+	cout << d.ev << "." << setw(2) << d.ho << "." << setw(2) << d.nap << "." << endl;
 }
-
-// elsõ n db Fibonacci-szám
-int* fib(int n) {
-	int* szamok = new int[n];
-	for (int i = 0; i < n; i++) {
-		if (i == 0 || i == 1)
-			szamok[i] = 1;
-		else
-			szamok[i] = szamok[i - 1] + szamok[i - 2];
-	}
-	return szamok;
-}
-
 
 int main() {
-	cout << "hello mogi" << endl;
+	cout << "hello" << endl;
 
-	int a = 3;
-	duplaz(a);
-	kiir(a);
+	datum ma;
+	ma.ev = 2021;
+	ma.ho = 2;
+	ma.nap = 8;
+	datum_kiir(ma);
 
-	
-	// fib
-	int db;
-	cout << "hany Fibonacci-szam kell? ";
-	cin >> db;
-	int* fib_szamok = fib(db);
-	for (int i = 0; i < db; i++) {
-		cout << fib_szamok[i] << endl;
-	}
-	delete[] fib_szamok;
+	int szam = 10;
 
-	// 10 int-bõl álló tömb
-	int* t = new int[10];
-	
-	// ...
+	// ez nem jó
+	duplaz1(szam);
+	cout << szam << endl;
 
-	// felszabadítás
-	delete[] t;
+	// ez már jó
+	cout << duplaz2(szam) << endl;
 
-	int h, m;
-	maradekos_osztas(78,5,h,m);
-	cout << h << "," << m << endl;
+	// pointeres megoldás
+	duplaz3(&szam);
+	cout << szam << endl;
 
-	cin.get();
+	// referenciás megoldás
+	duplaz4(szam);
+	cout << szam << endl;
+
+	int szam2 = 123;
+	duplaz4(szam2);
+	cout << szam2 << endl;
+
+	// C:   scanf("%d", &szam);
+	// C++: cin >> szam;
 
 	return 0;
 }

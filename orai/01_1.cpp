@@ -1,60 +1,45 @@
-#include <iostream> // std ki- és bemenet
-#include <iomanip> // ki- és bemenet formázása
-#include <cmath> // ugyanaz, mint a C-s math.h
+#include <iostream> // ki- és bemenethez
+#include <iomanip> // formázáshoz (setw, setfill stb.)
+#include <cstdlib> // stdlib.h C-bõl
+#include <ctime> // time.h C-bõl
 
-using namespace std; // névtér
-
-int hanyjegyu(int sz) {
-	if (sz == 0) return 1;
-
-	int cnt = 0;
-	while (sz != 0) {
-		cnt++;
-		sz /= 10;
-	}
-	return cnt;
-}
+using namespace std;
 
 int main() {
-	
-	// függvénytábla
-	cout << setprecision(4);
-	for (double theta = 0; theta < 10; theta += 1) {
-		cout << setw(10) << theta;
-		cout << setw(10) << sin(theta);
-		cout << setw(10) << cos(theta) << endl;
-	}
+	cout << "hello MOGI" << endl;
 
-	// alap kiírás
-	cout << "Hello MOGI!" << endl;
-	cout << "2x2=" << 4 << " :)" << endl;
+	// randomszámgenerálás
+	srand(time(NULL));
+	cout << rand() << endl;
+
+	// tömbkezelés
+	int *tomb = new int[10]; // ugyanaz, mint: tomb=(int*)malloc(10*sizeof(int));
+
+	tomb[0] = 123;
+	cout << tomb[0] << endl;
+
+	delete[] tomb; // ugyanaz, mint: free(tomb);
+
+	for (int i=1; i <= 10; i++) {
+		cout << i << endl;
+	}
 
 	// beolvasás
-	cout << "irj be egy szamot: ";
 	int szam;
+	cout << "irj be egy szamot: ";
 	cin >> szam;
-	cout << "a szam amit beirtal: " << szam << endl;
+	cout << "ezt irtad be: " << szam << endl;
 
-	// 1-tõl a szam-nál nem nagyobb négyzetszámok
-	cout << "negyzetszamok:" << endl;
-	for (int i = 1; i * i <= szam; i++)
-		cout << setw(10) << i * i << endl;
-
-	// prímtényezõs felbontás
-	int szelesseg = hanyjegyu(szam);
-	int oszt = 2;
-	while (szam != 1) {
-		while (szam % oszt != 0)
-			oszt++;
-
-		cout << setw(szelesseg) << szam << '|' << oszt << endl;
-		szam /= oszt;
+	// adott szélességû mezõ
+	cout << setfill('-');
+	for (int i = 1; i <= 10; i++) {
+		cout << setw(3) << i*i << endl;
 	}
 
+	// tizedesjegyek száma
+	double tort = 1.23456789;
+	cout << setprecision(5) << tort << endl;
 
-
-	cin.get();
-	cin.get();
 
 	return 0;
 }
